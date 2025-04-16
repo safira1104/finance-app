@@ -8,9 +8,6 @@ import { zValidator } from '@hono/zod-validator';
 import { z } from "zod";
 
 
-
-
-
 const app = new Hono()
     .get(
         "/", 
@@ -31,6 +28,42 @@ const app = new Hono()
             .where(eq(accounts.userId, auth.userId));
         return c.json({ data });
     })
+    .get(
+        "/:id",
+        zValidator("param", z.object({
+            id: z.string().optional(),
+        })),
+        clerkMiddleware(),
+        async (c) => {
+            const auth = getAuth(c);
+            const { id } = c.req.valid("param");
+
+            if (!id) {
+                return c.json({error: "Missing id" },400);
+            }
+
+            if (!auth?.userId) {
+                return c.json({error: "Unathorized"}, 401);
+            }
+
+            const [data] = await db
+                .select({
+                    id: accounts.id,
+                    name: accounts.name,
+                })
+                .from(accounts)
+                .where(
+                    and(
+                        eq(accounts.userId, auth.userId),
+                        eq(accounts.id, id)
+                    ),
+                );
+            if (!data) {
+                return c.json({ error: "Not found" }, 404);
+            }
+            return c.json({ data });
+        }
+    )
     .post(
         "/", 
         clerkMiddleware(),

@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div>
-      <Button onClick={onOpen}>
+      <Button onClick={onOpen} className="mt-4">
         Add an account
       </Button>
     </div>

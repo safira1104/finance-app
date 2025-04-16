@@ -49,7 +49,7 @@ const AccountsPage = () => {
                     <CardTitle className="text-xl line-clamp-1">
                         Account Page
                     </CardTitle>
-                    <Button onClick={newAccount.onOpen} className="sm">
+                    <Button onClick={newAccount.onOpen} size="sm">
                         <Plus className="size-4 mr-2"/>
                         Add new
                     </Button>
