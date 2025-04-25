@@ -28,7 +28,7 @@ export const NewCategorySheet = () => {
     
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="space-y-4">
+            <SheetContent>
                 <SheetHeader>
                     <SheetTitle>
                         New Category
@@ -37,13 +37,15 @@ export const NewCategorySheet = () => {
                         Create a new category to organize your transactions.
                     </SheetDescription>
                 </SheetHeader>
-                <CategoryForm 
-                    onSubmit={onSubmit} 
-                    disabled={mutation.isPending} 
-                    defaultValues={{
-                        name: "",
-                    }}
-                />
+                <div className="pt-0 px-4">
+                    <CategoryForm 
+                        onSubmit={onSubmit} 
+                        disabled={mutation.isPending} 
+                        defaultValues={{
+                            name: "",
+                        }}
+                    />
+                </div>
             </SheetContent>
         </Sheet>
     )
