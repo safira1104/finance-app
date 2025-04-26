@@ -77,21 +77,23 @@ export const EditAccountSheet = () => {
                             Edit an existing account
                         </SheetDescription>
                     </SheetHeader>
-                    {isLoading 
-                        ?(
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <Loader2 className="size-4 text-muted-foreground animate-spin" />
-                            </div>
-                        ) : (
-                            <AccountForm
-                                id={id}
-                                onSubmit={onSubmit} 
-                                disabled={isPending} 
-                                defaultValues={defaultValues}
-                                onDelete={onDelete}
-                            />
-                        )
-                    }
+                    <div className="pt-0 px-4">
+                        {isLoading 
+                            ?(
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <Loader2 className="size-4 text-muted-foreground animate-spin" />
+                                </div>
+                            ) : (
+                                <AccountForm
+                                    id={id}
+                                    onSubmit={onSubmit} 
+                                    disabled={isPending} 
+                                    defaultValues={defaultValues}
+                                    onDelete={onDelete}
+                                />
+                            )
+                        }
+                    </div>
                 </SheetContent>
             </Sheet>
         </>

@@ -64,6 +64,7 @@ categoryOptions,
         onSubmit({
             ...values,
             amount: amountInMiliunits,
+            categoyId: values.categoryId ?? null,
         }); 
     };
 
