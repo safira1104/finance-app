@@ -88,7 +88,7 @@ export function formatDateRange (period?: Period) {
 };
 
 export function formatPercentage(
-  value:number,
+  value: number,
   options: { addPrefix?: boolean} = {
     addPrefix: false
   },
@@ -102,4 +102,4 @@ export function formatPercentage(
   }
 
   return result;
-}
+};
